@@ -3,6 +3,7 @@
 
 #include "../src/grid.h"
 
+void random_block();
 void example_filling_bar();
 void example_build_block();
 void example_sine_tracking();

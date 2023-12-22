@@ -1,6 +1,8 @@
 #include <math.h>
 #include "../src/grid.h"
 #include "../src/renderer.h"
+#include <time.h>
+#include <stdlib.h>
 #include <stdio.h>
 
 void example_filling_bar()
@@ -144,3 +146,35 @@ void example_draw_border()
     renderer_free();
     grid_free(g);
 }
+
+void random_block()
+{
+    int width = 128;
+    int height = 128;
+
+    grid *g = grid_new(width, height);
+    renderer_new(g);
+
+    srand(time(NULL));
+
+    while (1)
+    {
+    grid_clear(g);
+        for (int x = 0; x < width; x++)
+	{
+            for (int y = 0; y < height; y++)
+	    {
+                int r = rand();
+                if (r%2 == 0) 
+		{
+                    grid_set_pixel(g, x, y);
+                }
+            }
+        }
+    renderer_update(g);
+    }
+    // Free allocations
+    renderer_free();
+    grid_free(g);
+}
+
